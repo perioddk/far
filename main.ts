@@ -20,17 +20,20 @@ let Stepsize = 0
 Stepsize = 5
 Volume = 100
 music.setVolume(Volume)
-Stepchanged = 0
-Volchanged = 0
+Stepchanged = 1
+Volchanged = 1
 basic.showIcon(IconNames.Yes)
+music.startMelody(music.builtInMelody(Melodies.Entertainer), MelodyOptions.ForeverInBackground)
 basic.forever(function () {
-    music.startMelody(music.builtInMelody(Melodies.Dadadadum), MelodyOptions.ForeverInBackground)
     if (Stepchanged >= 1) {
-        basic.showString("S" + Stepsize)
+        led.setBrightness(8 * Stepsize)
         Stepchanged = 0
     }
     if (Volchanged >= 1) {
-        basic.showString("V" + Stepsize)
+        led.plotBarGraph(
+        Volume,
+        255
+        )
         Volchanged = 0
     }
 })
